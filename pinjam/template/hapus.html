@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hapus Peminjaman</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #c0392b;
+        }
+
+        p {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            color: #444;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #f2f2f2;
+        }
+
+        input[readonly] {
+            color: #555;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #c0392b;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function konfirmasiSimpan() {
+            return confirm("Apakah Anda yakin ingin menghapus data ini?");
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Hapus Peminjaman</h1>
+        <p>Apakah Anda yakin ingin menghapus peminjaman berikut?</p>
+        
+        <form method="POST" action="pinjam?aksi=hapus" onsubmit="return konfirmasiSimpan();">
+            <input type="hidden" name="id" value="{{ (index .Data 0).ID }}">
+
+            <label>ID:</label>
+            <input type="text" value="{{ (index .Data 0).ID }}" readonly>
+
+            <label>Nama Peminjam:</label>
+            <input type="text" value="{{ (index .Data 0).NamaPeminjam }}" readonly>
+
+            <label>Nama Barang:</label>
+            <input type="text" value="{{ (index .Data 0).NamaBarang }}" readonly>
+
+            <label>Jumlah:</label>
+            <input type="number" value="{{ (index .Data 0).Jumlah }}" readonly>
+
+            <label>Tanggal Pengembalian:</label>
+            <input type="date" value="{{ (index .Data 0).TanggalPengembalian }}" readonly>
+
+            <label>Tanggal Peminjaman:</label>
+            <input type="date" value="{{ (index .Data 0).TanggalPeminjaman }}" readonly>
+
+            <input type="submit" value="Hapus">
+        </form>
+
+        <a href="/pinjam">← Kembali ke Daftar Peminjaman</a>
+    </div>
+</body>
+</html>

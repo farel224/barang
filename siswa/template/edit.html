@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Mahasiswa</title>
+<style>
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 1px dashed #000;
+    padding-bottom: 10px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.form-container input[type="text"],
+.form-container input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-container input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.form-container input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.batal-link {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+}
+
+.batal-link:hover {
+  color: #000;
+  background-color: #51f059;
+}
+
+hr {
+  border: none;
+  border-top: 1px dashed #aaa;
+  margin: 10px 0;
+}
+    </style>
+</head>
+<body>
+    <div class="form-container">
+<h2>Edit Mahasiswa</h2>
+<a href="/siswa" class="batal-link">[ Batal ]</a>
+<hr>
+<form method="POST" action="?aksi=edit">
+    <input type="hidden" name="nim" value="{{ (index .Data 0).Nim }}">
+<label for="nim">NIM :</label>
+    <input type="text" id="nim" value="{{ (index .Data 0).Nim }}">
+    <label for="nama">Nama :</label>
+    <input type="text" name="nama" id="nama" value="{{ (index .Data 0).Nama }}">
+<label for="progdi">Program Studi :</label>
+    <input type="text" name="progdi" id="progdi" value="{{ (index .Data 0).Progdi }}">
+<label for="smt">Semester :</label>
+    <input type="number" name="smt" id="smt" value="{{ (index .Data 0).Smt }}">
+<input type="submit" value="Simpan">
+</form>
+</div>
+</body>
+</html>

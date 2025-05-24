@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Peminjaman</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #34495e;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            background-color: #fdfdfd;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 12px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1e8449;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #2980b9;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Peminjaman</h1>
+        <form action="pinjam?aksi=edit" method="POST">
+            <input type="hidden" name="id" value="{{ (index .Data 0).ID }}">
+
+            <label for="NamaPeminjam">Nama Peminjam:</label>
+            <input type="text" id="NamaPeminjam" name="namapeminjam" value="{{ (index .Data 0).NamaPeminjam }}" required>
+
+       <label for="namabarang">Nama Barang:</label>
+<select name="namabarang" required>
+    <option value="">-- Pilih Barang --</option>
+    <option value="kabel roll">Kabel Roll</option>
+    <option value="proyektor">Proyektor</option>
+    <option value="kipas angin">Kipas Angin</option>
+    <option value="peralatan perkakas">Peralatan Perkakas</option>
+    <option value="webcam">Webcam</option>
+    <option value="speaker">Speaker</option>
+</select>
+
+            <label for="Jumlah">Jumlah:</label>
+            <input type="number" id="Jumlah" name="jumlah" value="{{ (index .Data 0).Jumlah }}" required>
+
+            <label for="TanggalPeminjaman">Tanggal Peminjaman:</label>
+            <input type="date" id="TanggalPeminjaman" name="tanggalpeminjaman" value="{{ (index .Data 0).TanggalPeminjaman }}" required>
+
+            <label for="TanggalPengembalian">Tanggal Pengembalian:</label>
+            <input type="date" id="TanggalPengembalian" name="tanggalpengembalian" value="{{ (index .Data 0).TanggalPengembalian }}" required>
+
+            <button type="submit">Simpan Perubahan</button>
+        </form>
+
+        <a href="/pinjam">← Kembali ke Daftar Peminjaman</a>
+    </div>
+</body>
+</html>

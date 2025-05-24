@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAMBAH MAHASISWA - UDB</title>
+    <style>
+ body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+ }
+.form-container {
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+.form-container h2 {
+  text-align: center;
+}
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+button {
+ margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+ background-color: #4CAF50;
+ color: rgb(255, 255, 255);
+ border: none;
+ cursor: pointer;
+ font-size: 16px;
+ border-radius: 5px;
+}
+button:hover {
+ background-color: #45a049;
+}
+.cancel-link {
+  display: block;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #555;
+  text-decoration: none;
+}
+.cancel-link:hover {
+text-decoration: underline;
+}
+</style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Tambah Mahasiswa</h2>
+        <a class="cancel-link" href="/siswa">[ Batal ]</a>
+        <form action="/siswa?aksi=tamb" method="POST">
+            <label for="nim">NIM:</label>
+            <input type="text" name="nim" required>
+
+            <label for="nama">Nama:</label>
+            <input type="text" name="nama" required>
+
+            <label for="progdi">Program Studi:</label>
+            <input type="text" name="progdi" required>
+
+            <label for="smt">Semester:</label>
+            <input type="text" name="smt" required>
+
+            <button type="submit">Tambah</button>
+        </form>
+    </div>
+</body>
+</html>

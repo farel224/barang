@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Peminjaman</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #2e86de;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1b4f72;
+        }
+
+        .cancel-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #999;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .cancel-link:hover {
+            text-decoration: underline;
+            color: #666;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #2e86de;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Tambah Peminjaman</h1>
+        <a class="cancel-link" href="/pinjam">← Batal & Kembali</a>
+        <form action="/pinjam?aksi=tambah" method="POST">
+            <label for="id">ID:</label>
+            <input type="text" name="id" required>
+
+            <label for="namapeminjam">Nama Peminjam:</label>
+            <input type="text" name="namapeminjam" required>
+
+            <label for="namabarang">Nama Barang:</label>
+<select name="namabarang" required>
+    <option value="">-- Pilih Barang --</option>
+    <option value="kabel roll">Kabel Roll</option>
+    <option value="proyektor">Proyektor</option>
+    <option value="kipas angin">Kipas Angin</option>
+    <option value="peralatan perkakas">Peralatan Perkakas</option>
+    <option value="webcam">Webcam</option>
+    <option value="speaker">Speaker</option>
+</select>
+
+            <label for="jumlah">Jumlah:</label>
+            <input type="number" name="jumlah" required>
+
+            <label for="tanggalpeminjaman">Tanggal Peminjaman:</label>
+            <input type="date" name="tanggalpeminjaman" required>
+
+            <label for="tanggalpengembalian">Tanggal Pengembalian:</label>
+            <input type="date" name="tanggalpengembalian" required>
+
+
+            <button type="submit">Tambah</button>
+        </form>
+    </div>
+</body>
+</html>

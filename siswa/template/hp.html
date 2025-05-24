@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Mahasiswa</title>
+  <script>
+    function konfirmasiSimpan() {
+      return confirm("Apakah Anda yakin ingin menghapus data mahasiswa ini?");
+    }
+  </script>
+  <style>
+body {
+  font-family: 'Courier New', Courier, monospace;
+  background: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+.struk {
+  background: white;
+  padding: 20px 30px;
+  width: 300px;
+  border: 1px dashed #333;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.struk h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 1px dashed #000;
+  padding-bottom: 10px;
+}
+.struk label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.struk input[type="text"],
+.struk input[type="number"] {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background: none;
+  font-size: 14px;
+  padding: 4px 0;
+}
+.struk input[type="submit"] {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  background: #d32f2f;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.struk input[type="submit"]:hover {
+  background: #b71c1c;
+}
+.batal-link {
+  display: block;
+  text-align: center;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #000000;
+  background-color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.batal-link:hover {
+  background-color: #e0e0e0;
+  color: #d32f2f;
+}
+hr {
+  border: none;
+  border-top: 1px dashed #aaa;
+  margin: 10px 0 20px;
+}
+  </style>
+</head>
+<body>
+
+  <div class="struk">
+    <h2>Hapus Data Mahasiswa</h2>
+    <a href="/siswa" class="batal-link">[ Batal ]</a>
+    <hr>
+
+    <form method="POST" action="?aksi=hp" onsubmit="return konfirmasiSimpan();">
+      <input type="hidden" name="nim" value="{{ (index .Data 0).Nim }}">
+
+      <label>NIM:
+        <input type="text" value="{{ (index .Data 0).Nim }}" readonly>
+      </label>
+
+      <label>Nama:
+        <input type="text" name="nama" value="{{ (index .Data 0).Nama }}" readonly>
+      </label>
+
+      <label>Program Studi:
+        <input type="text" name="progdi" value="{{ (index .Data 0).Progdi }}" readonly>
+      </label>
+
+      <label>Semester:
+        <input name="smt" type="number" value="{{ (index .Data 0).Smt }}" readonly>
+      </label>
+
+      <input type="submit" value="Hapus">
+    </form>
+  </div>
+
+</body>
+</html>

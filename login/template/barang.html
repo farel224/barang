@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Peminjaman Barang</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f8;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .barang {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      padding: 15px;
+      width: 220px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: perspective(600px) rotateY(5deg);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: 140px;
+      object-fit: contain;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.05) rotateY(5deg);
+    }
+
+    .stok {
+      font-weight: bold;
+      color: green;
+      margin: 10px 0;
+    }
+
+    .habis {
+      color: red !important;
+    }
+
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #2980b9;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header a {
+      text-decoration: none;
+      color: #3498db;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>📦 Halaman Peminjaman Barang</h1>
+    <a href="/dashboard">← Kembali ke Dashboard</a>
+  </div>
+
+  <p>Halo {{.Username}}, di sini kamu bisa meminjam barang yang tersedia.</p>
+
+  <form id="formPeminjaman">
+    <button type="button" onclick="resetStok()">🔄 Reset Stok Barang</button>
+
+    <div class="barang">
+      {{/* Ulangi untuk setiap barang jika pakai loop dari backend nanti */}}
+
+      <div class="card" data-nama="Kabel Roll" data-id="kabelroll">
+        <img src="/foto/kabel-roll.jpg" alt="Kabel Roll">
+        <p>Kabel Roll</p>
+        <p class="stok" id="stok-kabelroll">Stok: 6</p>
+       <button id="btn-kabel-roll" type="button" onclick="pinjamBarang('kabelroll')">Pinjam</button>
+
+
+      </div>
+
+      <!-- Proyektor -->
+<div class="card" data-nama="Proyektor" data-id="proyektor">
+  <img src="/foto/Proyektor-Bekas.jpg" alt="Proyektor">
+  <p>Proyektor</p>
+  <p class="stok" id="stok-proyektor">Stok: 6</p>
+  <button id="btn-proyektor" type="button" onclick="pinjamBarang('proyektor')">Pinjam</button>
+</div>
+
+<!-- Peralatan Perkakas -->
+<div class="card" data-nama="Peralatan Perkakas" data-id="perkakas">
+  <img src="/foto/alatperkakas.jpg" alt="Peralatan Perkakas">
+  <p>Peralatan Perkakas</p>
+  <p class="stok" id="stok-perkakas">Stok: 6</p>
+  <button id="btn-perkakas" type="button" onclick="pinjamBarang('perkakas')">Pinjam</button>
+</div>
+
+<!-- Kipas Angin -->
+<div class="card" data-nama="Kipas Angin" data-id="kipas">
+  <img src="/foto/kipas-angin.jpg" alt="Kipas Angin">
+  <p>Kipas Angin</p>
+  <p class="stok" id="stok-kipas">Stok: 6</p>
+   <button id="btn-kipas" type="button" onclick="pinjamBarang('kipas')">Pinjam</button>
+</div>
+
+<!-- Speaker -->
+<div class="card" data-nama="Speaker" data-id="speaker">
+  <img src="/foto/speaker.jpg" alt="Speaker">
+  <p>Speaker</p>
+  <p class="stok" id="stok-speaker">Stok: 6</p>
+   <button id="btn-speaker" type="button" onclick="pinjamBarang('speaker')">Pinjam</button>
+</div>
+
+<!-- Webcam -->
+<div class="card" data-nama="Webcam" data-id="webcam">
+  <img src="/foto/webcam.jpg" alt="Webcam">
+  <p>Webcam</p>
+  <p class="stok" id="stok-webcam">Stok: 6</p>
+  <button id="webcam" type="button" onclick="pinjamBarang('webcam')">Pinjam</button>
+</div>
+
+
+    </div>
+  </form>
+
+ <script>
+  // Inisialisasi stok dari localStorage atau default jika belum ada
+  const defaultStok = {
+    kabelroll: 6,
+    proyektor: 6,
+    perkakas: 6,
+    kipas: 6,
+    speaker: 6,
+    webcam: 6
+  };
+
+  let stokBarang = JSON.parse(localStorage.getItem('stokBarang')) || defaultStok;
+
+  // Render stok ke halaman
+  for (const id in stokBarang) {
+    const el = document.getElementById(`stok-${id}`);
+    if (el) {
+      el.textContent = `Stok: ${stokBarang[id]}`;
+      if (stokBarang[id] === 0) {
+        el.classList.add('habis');
+      }
+    }
+  }
+
+  function pinjamBarang(id) {
+    if (stokBarang[id] > 0) {
+      stokBarang[id]--;
+      document.getElementById(`stok-${id}`).textContent = `Stok: ${stokBarang[id]}`;
+      if (stokBarang[id] === 0) {
+        alert("Barang habis!");
+        document.getElementById(`stok-${id}`).classList.add('habis');
+      }
+      // Simpan perubahan ke localStorage
+      localStorage.setItem('stokBarang', JSON.stringify(stokBarang));
+
+      // Simulasi pindah halaman
+      window.location.href = `/pinjam?id=${id}`;
+    } else {
+      alert("Barang habis!");
+    }
+  }
+
+  function resetStok() {
+  if (confirm("Yakin ingin mereset semua stok barang?")) {
+    // Setel ulang ke stok default
+    stokBarang = {
+      kabelroll: 6,
+      proyektor: 6,
+      perkakas: 6,
+      kipas: 6,
+      speaker: 6,
+      webcam: 6
+    };
+
+    // Simpan ke localStorage
+    localStorage.setItem('stokBarang', JSON.stringify(stokBarang));
+
+    // Perbarui tampilan di halaman
+    for (const id in stokBarang) {
+      const el = document.getElementById(`stok-${id}`);
+      if (el) {
+        el.textContent = `Stok: ${stokBarang[id]}`;
+        el.classList.remove('habis');
+      }
+    }
+
+    alert("Stok berhasil direset.");
+  }
+}
+
+</script>
+
+</body>
+</html>

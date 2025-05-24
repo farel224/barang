@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #ecf0f1, #ffffff);
+      min-height: 100vh;
+    }
+
+    .navbar {
+      background-color: #34495e;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .navbar h2 {
+      color: #fff;
+      font-weight: 600;
+      font-size: 22px;
+    }
+
+    .menu-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .navbar a,
+    .logout-btn {
+      color: white;
+      padding: 10px 18px;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .navbar a:hover,
+    .logout-btn:hover {
+      background-color: #1abc9c;
+    }
+
+    .content {
+      padding: 40px 30px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    .card-box {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      padding: 30px;
+      width: 260px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .card:focus {
+      box-shadow: 0 0 0 3px #1abc9c;
+    }
+
+    .card h3 {
+      color: #2980b9;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #777;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <h2>📦 Sistem Peminjaman</h2>
+    <div class="menu-links">
+      <a href="/dashboard">🏠 Dashboard</a>
+      <a href="/barang">📋 Peminjaman Barang</a>
+      <a href="/siswa">🎓 Daftar Mahasiswa</a>
+      <form action="/logout" method="POST" style="display: inline;">
+        <button type="submit" class="logout-btn">🚪 Logout</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="content">
+    <h1>Selamat Datang di Dashboard</h1>
+    <p>Pilih menu di atas untuk mengelola data peminjaman atau mahasiswa.</p>
+
+    <div class="card-box">
+      <div class="card" 
+           onclick="location.href='/barang'" 
+           tabindex="0" 
+           onkeypress="if(event.key==='Enter'){location.href='/barang';}">
+        <h3>📦 Peminjaman Barang</h3>
+        <p>Kelola data peminjaman barang oleh mahasiswa.</p>
+      </div>
+      <div class="card" 
+           onclick="location.href='/siswa'"
+           tabindex="0" 
+           onkeypress="if(event.key==='Enter'){location.href='/siswa';}">
+        <h3>🎓 Daftar Mahasiswa</h3>
+        <p>Lihat dan atur data mahasiswa yang terdaftar.</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
